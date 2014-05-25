@@ -1,6 +1,7 @@
 
 #specifying working directory and paths to folders containing files of interest
-setwd("C:/Users/Ivan/Desktop/R_EXAMS/Clean_Data/UCI HAR Dataset")
+#setwd("C:/Users/Ivan/Desktop/R_EXAMS/Clean_Data/UCI HAR Dataset") -according to online instructions this isnt needed
+#since it should be run from the UCI HAR Dataset as a default working directory 
 test_path <- "test"
 train_path <- "train"
 #reading all the necessary files(data files, description files, activity files,individual files)
@@ -31,6 +32,8 @@ colnames(mean_std_data) <- matches
 #adding individual and activity columns to the dataset
 merged_individuals <- rbind(subject_test,subject_train)
 merged_activity <- rbind(activity_test,activity_train)
+replacement <- c("walking","walkingupstairs","walkingdownstairs","sitting","standing","laying")
+merged_activity[1:10299,1] <-replacement[merged_activity[1:10299,1]]
 mean_std_data$subject <- merged_individuals$V1
 mean_std_data$activity <- merged_activity$V1
 #reshaping data to make the tidy dataset
@@ -39,6 +42,6 @@ library(plyr)
 mean_std_data <- data.table(mean_std_data)                                
 meltdata<-melt(mean_std_data,id=c("subject","activity"),measure.vars=matches)
 tidydata <- dcast(meltdata,subject+activity~variable,mean)
-
+write.table(tidydata,file="tidydata.txt")
 
 

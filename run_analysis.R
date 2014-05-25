@@ -33,10 +33,10 @@ colnames(mean_std_data) <- matches
 merged_individuals <- rbind(subject_test,subject_train)
 merged_activity <- rbind(activity_test,activity_train)
 replacement <- c("walking","walkingupstairs","walkingdownstairs","sitting","standing","laying")
-merged_activity[1:10299,1] <-replacement[merged_activity[1:10299,1]]
+merged_activity[1:10299,1] <-replacement[merged_activity[1:10299,1]] #this changes activity values(1:6) with their actual description
 mean_std_data$subject <- merged_individuals$V1
 mean_std_data$activity <- merged_activity$V1
-#reshaping data to make the tidy dataset
+#reshaping data to make the tidy dataset in the format required by the final exam point
 library(reshape2)
 library(plyr)
 mean_std_data <- data.table(mean_std_data)                                

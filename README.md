@@ -21,3 +21,7 @@ It opens all the necessary files:
 - 'subject_train.txt'
 
 Merges the two datasets(X_train,X_test), cleans up the data, adds activity labels and subjects,selects only for mean and standard deviation of features and in the end outputs a tidy data set of subjects, their activities and the average value of each of the measurments for the subject/activity pair in tidydata.txt file.
+
+
+run_analysis.R and its variables are described in more detail in the CodeBook.md as per exam instructions.
+
